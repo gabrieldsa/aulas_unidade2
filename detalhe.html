@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <header>
+        <h1>Detalhes do Produto</h1>
+    </header>
+    <main id="produto-detalhe">
+        <!-- As informações do produto serão carregadas aqui via JavaScript -->
+    </main>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const produtoId = urlParams.get('id');
+
+        if (produtoId) {
+            fetch(`http://localhost:3000/produtos/${produtoId}`)
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error("Produto não encontrado");
+                    }
+                    return res.json();
+                })
+                .then(produto => {
+                    document.getElementById('produto-detalhe').innerHTML = `
+                        <div class="produto-detalhe-card">
+                            <img src="${produto.imagem}" alt="${produto.nome}" style="max-width: 300px; max-height: 300px;">
+                            <h2>${produto.nome}</h2>
+                            <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
+                            <p><strong>Descrição:</strong> ${produto.descricao}</p>
+                        </div>
+                    `;
+                })
+                .catch(erro => {
+                    console.error(erro);
+                    document.getElementById('produto-detalhe').innerHTML = '<p>Produto não encontrado.</p>';
+                });
+        } else {
+            document.getElementById('produto-detalhe').innerHTML = '<p>Produto não especificado.</p>';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produto</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <header>
+        <h1>Cadastro de Produto</h1>
+    </header>
+    <main>
+        <form id="form-cadastro">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="preco">Preço:</label>
+            <input type="number" id="preco" name="preco" step="0.01" required>
+
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" required></textarea>
+
+            <label for="imagem">URL da Imagem:</label>
+            <input type="text" id="imagem" name="imagem" required>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <div id="mensagem"></div>
+
+<nav style="margin-top: 20px;">
+    <a href="index.html" class="btn-voltar">← Voltar para a lista de produtos</a>
+</nav>
+
+    </main>
+
+    <script>
+        document.getElementById('form-cadastro').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const novoProduto = {
+                nome: document.getElementById('nome').value,
+                preco: parseFloat(document.getElementById('preco').value),
+                descricao: document.getElementById('descricao').value,
+                imagem: document.getElementById('imagem').value
+            };
+
+            fetch('http://localhost:3000/produtos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(novoProduto)
+            })
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Erro ao cadastrar produto.');
+                }
+                return res.json();
+            })
+            .then(data => {
+                document.getElementById('mensagem').innerHTML = `<p>Produto <strong>${data.nome}</strong> cadastrado com sucesso!</p>`;
+                document.getElementById('form-cadastro').reset();
+            })
+            .catch(error => {
+                document.getElementById('mensagem').innerHTML = `<p style="color: red;">${error.message}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>

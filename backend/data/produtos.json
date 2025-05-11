@@ -1,0 +1,25 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "The Last of Us",
+      "preco": 199.90,
+      "descricao": "Jogo de ação e aventura",
+      "imagem": "img/last-of-us.png"
+    },
+    {
+      "id": 2,
+      "nome": "God of War",
+      "preco": 249.90,
+      "descricao": "Jogo mitológico de combate",
+      "imagem": "img/god-of-war.png"
+    },
+    {
+      "id": 3,
+      "nome": "Spider-Man",
+      "preco": 229.90,
+      "descricao": "Jogo do Homem-Aranha",
+      "imagem": "img/spider-man.png"
+    }
+  ]
+}

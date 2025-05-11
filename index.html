@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Gamer</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
+        <h1>Loja Gamer</h1>
+        <a href="cadastro.html" class="btn-cadastro">Cadastrar Produto</a>
+    </header>
+    <!-- Atualização do header para inserir o botão de cadastro -->
+    <main>
+        <section class="produtos" id="lista-produtos">
+            <!-- Os produtos serão carregados dinamicamente aqui -->
+        </section>
+    </main>
+    <script>
+        // Função para carregar os produtos do JSON Server
+        async function carregarProdutos() {
+            try {
+                const resposta = await fetch('http://localhost:3000/produtos');
+                const produtos = await resposta.json();
+    
+                const container = document.getElementById('lista-produtos');
+                container.innerHTML = ''; // Limpa o conteúdo anterior
+    
+                produtos.forEach(produto => {
+                    const card = document.createElement('div');
+                    card.className = 'produto-card';
+                    card.innerHTML = `
+                        <img src="${produto.imagem}" alt="${produto.nome}">
+                        <h2>${produto.nome}</h2>
+                        <p>${produto.descricao}</p>
+                        <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
+                        <a href="detalhe.html?id=${produto.id}" class="btn-detalhes">Ver Detalhes</a>
+                        <button class="btn-excluir" data-id="${produto.id}">Excluir</button>
+                    `;
+                    container.appendChild(card);
+
+                     // Adiciona evento ao botão "Excluir"
+                     const botaoExcluir = card.querySelector('.btn-excluir');
+                    botaoExcluir.addEventListener('click', async () => {
+                        const confirmar = confirm(`Deseja realmente excluir o produto "${produto.nome}"?`);
+                        if (!confirmar) return;
+
+                        try {
+                            const resposta = await fetch(`http://localhost:3000/produtos/${produto.id}`, {
+                                method: 'DELETE'
+                            });
+
+                            if (!resposta.ok) throw new Error('Erro ao excluir produto');
+
+                            // Recarrega a lista após exclusão
+                            carregarProdutos();
+                        } catch (erro) {
+                            alert('Erro ao excluir produto.');
+                            console.error(erro);
+                        }
+                    });
+
+                });
+            } catch (erro) {
+                console.error('Erro ao carregar produtos:', erro);
+                document.getElementById('lista-produtos').innerHTML = '<p>Erro ao carregar produtos.</p>';
+            }
+        }
+    
+        carregarProdutos();
+    </script>
+    
+</body>
+</html>

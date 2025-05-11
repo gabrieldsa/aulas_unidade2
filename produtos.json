@@ -1,0 +1,32 @@
+{
+  "produtos": [
+    {
+      "id": "1",
+      "nome": "The Last of Us",
+      "preco": 199.9,
+      "descricao": "Jogo de ação e aventura",
+      "imagem": "img/last-of-us.png"
+    },
+    {
+      "id": "2",
+      "nome": "God of War",
+      "preco": 249.9,
+      "descricao": "Jogo mitológico de combate",
+      "imagem": "img/god-of-war.png"
+    },
+    {
+      "id": "3",
+      "nome": "Spider-Man",
+      "preco": 229.9,
+      "descricao": "Jogo do Homem-Aranha",
+      "imagem": "img/spider-man.png"
+    },
+    {
+      "id": "9132",
+      "nome": "Quake 3",
+      "preco": 59.9,
+      "descricao": "Quake 3 - Arena",
+      "imagem": "https://images.seeklogo.com/logo-png/39/1/quake-iii-logo-png_seeklogo-399081.png"
+    }
+  ]
+}

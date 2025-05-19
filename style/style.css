@@ -174,3 +174,56 @@ input, textarea, button {
 .btn-cadastro:hover {
   background-color: rgb(81, 81, 81)
 }
+/*Botão editar*/
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+form button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form button:hover {
+  background-color: rgb(81, 81, 81)
+}
+
+#mensagem p {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e7f9ed;
+  border: 1px solid #b4e0c6;
+  border-radius: 5px;
+  color: #2e7d32;
+  font-weight: bold;
+  text-align: center;
+}
+.btn-voltar {
+    color: white;
+  padding: 10px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-voltar:hover {
+  background-color: rgb(81, 81, 81)
+}

@@ -36,6 +36,7 @@
                         <p>${produto.descricao}</p>
                         <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
                         <a href="detalhe.html?id=${produto.id}" class="btn-detalhes">Ver Detalhes</a>
+                        <a href="editar.html?id=${produto.id}" class="btn-editar">Editar</a>
                         <button class="btn-excluir" data-id="${produto.id}">Excluir</button>
                     `;
                     container.appendChild(card);

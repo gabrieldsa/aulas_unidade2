@@ -1,0 +1,37 @@
+[
+  {
+    "nome": "Gabriel",
+    "email": "gabrieldsa@hotmail.com",
+    "telefone": "83996236549",
+    "login": "gabriel",
+    "senha": "123"
+  },
+  {
+    "nome": "gabriel dsa",
+    "email": "gabriel@gmail.com",
+    "telefone": "83 999999999",
+    "login": "gabriel1",
+    "senha": "123"
+  },
+  {
+    "nome": "gabriel",
+    "email": "gabriel2@gmail.com",
+    "telefone": "83 988888888",
+    "login": "gabriel",
+    "senha": "123"
+  },
+  {
+    "nome": "gabriel",
+    "email": "gabriel3@gmail.com",
+    "telefone": "82 999999999",
+    "login": "gabriel1",
+    "senha": "123"
+  },
+  {
+    "nome": "teste filho",
+    "email": "teste@gmail.com",
+    "telefone": "84 999999999",
+    "login": "testef",
+    "senha": "123"
+  }
+]

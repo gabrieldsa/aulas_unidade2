@@ -31,3 +31,29 @@ document.addEventListener("DOMContentLoaded", () => {
           detalheContainer.innerHTML = "<p>Produto não encontrado.</p>";
       });
 });
+
+// MODAL
+// script.js
+
+// Elementos
+const btnAbrir = document.getElementById('btn-cadastrar');
+const modal = document.getElementById('modal-cadastro');
+const fecharModal = document.getElementById('fechar-modal');
+
+// Abrir modal
+btnAbrir.addEventListener('click', () => {
+  modal.style.display = 'block';
+});
+
+// Fechar modal
+fecharModal.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+// Fechar ao clicar fora do modal
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+

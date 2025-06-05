@@ -20,6 +20,27 @@
       "preco": 229.9,
       "descricao": "Jogo do Homem-Aranha",
       "imagem": "img/spider-man.png"
+    },
+    {
+      "id": "1c5b",
+      "nome": "Spider-Man 2",
+      "preco": 200,
+      "descricao": "Spider-Man 2",
+      "imagem": "https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/60eca3ac155247e21850c7d075d01ebf0f3f5dbf19ccd2a1.jpg"
+    },
+    {
+      "id": "7d17",
+      "nome": "Paciência Spider",
+      "preco": 10.9,
+      "descricao": "Jogo de Paciência Spider - Clássico",
+      "imagem": "https://store-images.s-microsoft.com/image/apps.53822.9007199266251693.6d9a883f-871c-4ac6-a296-79465e2a56a7.0f24460a-f35e-4fdc-ac7c-ac6eac76b7d6?h=1280"
+    },
+    {
+      "id": "180f",
+      "nome": "God Of War - 3",
+      "preco": 129.9,
+      "descricao": "TEste do Jogo 3",
+      "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrvhLVGxXHnWNkDtV71o-3-bFx5c98oqkIVw&s"
     }
   ]
 }

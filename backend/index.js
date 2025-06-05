@@ -8,13 +8,6 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Rota GET para todos os produtos
-app.get('/produtos', (req, res) => {
-  const data = fs.readFileSync('./data/produtos.json');
-  const produtos = JSON.parse(data);
-  res.json(produtos);
-});
-
 // Rota GET para um produto por ID
 app.get('/produtos/:id', (req, res) => {
   const id = parseInt(req.params.id);
@@ -28,6 +21,26 @@ app.get('/produtos/:id', (req, res) => {
     res.status(404).json({ mensagem: 'Produto não encontrado' });
   }
 });
+
+// Rota GET para listar todos os produtos ou buscar por nome
+app.get('/produtos', (req, res) => {
+  const busca = req.query.busca?.toLowerCase();
+
+  fs.readFile('./data/produtos.json', 'utf8', (err, data) => {
+    if (err) return res.status(500).json({ erro: 'Erro ao ler o arquivo' });
+
+    let produtos = JSON.parse(data);
+
+    if (busca) {
+      produtos = produtos.filter(produto =>
+        produto.nome.toLowerCase().includes(busca)
+      );
+    }
+
+    res.json(produtos);
+  });
+});
+
 
 // Rota POST para adicionar novo produto
 app.post('/produtos', (req, res) => {

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resultados da Busca</title>
+  <link rel="stylesheet" href="style/style.css" />
+</head>
+<body>
+  <div class="pagina-resultados">
+    <aside class="barra-lateral">
+      <h2>Buscar</h2>
+      <input type="text" id="barra-pesquisa" placeholder="Digite o nome do produto..." />
+      <button id="botao-busca">Buscar</button>
+    </aside>
+
+    <main class="area-resultados">
+      <h1>Resultados da Busca</h1>
+      <a href="index.html" class="btn-voltar">← Voltar para a Página Inicial</a>
+      <div id="resultados" class="produtos"></div>
+    </main>
+  </div>
+
+  <script>
+    async function carregarProdutos() {
+      const resposta = await fetch("http://localhost:3000/produtos");
+      return await resposta.json();
+    }
+
+    function filtrarProdutos(produtos, termo) {
+      termo = termo.toLowerCase();
+      return produtos.filter(produto =>
+        produto.nome.toLowerCase().includes(termo) ||
+        produto.descricao.toLowerCase().includes(termo)
+      );
+    }
+
+    function exibirProdutos(produtos) {
+      const container = document.getElementById('resultados');
+      container.innerHTML = '';
+
+      if (produtos.length === 0) {
+        container.innerHTML = '<p>Nenhum produto encontrado.</p>';
+        return;
+      }
+
+      produtos.forEach(produto => {
+        const card = document.createElement('div');
+        card.className = 'produto-card';
+        card.innerHTML = `
+          <img src="${produto.imagem}" alt="${produto.nome}">
+          <h2>${produto.nome}</h2>
+          <p>${produto.descricao}</p>
+          <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
+          <a href="detalhe.html?id=${produto.id}" class="btn-detalhes">Ver Detalhes</a>
+          <a href="editar.html?id=${produto.id}" class="btn-editar">Editar</a>
+          <button class="btn-excluir" data-id="${produto.id}">Excluir</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    async function buscarETrazerResultados(termo) {
+      const produtos = await carregarProdutos();
+      const filtrados = filtrarProdutos(produtos, termo);
+      exibirProdutos(filtrados);
+    }
+
+    // Evento do botão
+    document.getElementById('botao-busca').addEventListener('click', () => {
+      const termo = document.getElementById('barra-pesquisa').value.trim();
+      if (termo) buscarETrazerResultados(termo);
+    });
+
+    // Busca automática com base na URL
+const params = new URLSearchParams(window.location.search);
+const termoBusca = params.get('busca'); 
+
+if (termoBusca) {
+  document.getElementById('barra-pesquisa').value = termoBusca;
+  buscarETrazerResultados(termoBusca);
+}
+  </script>
+</body>
+</html>

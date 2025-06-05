@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Usuário</title>
+  <link rel="stylesheet" href="style/style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <header>
+    <h1>Cadastro de Usuário</h1>
+  </header>
+
+  <main>
+    <form id="form-cadastro">
+      <label for="nome">Nome completo:</label>
+      <input type="text" id="nome" name="nome" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="telefone">Telefone:</label>
+      <input type="text" id="telefone" name="telefone" required>
+
+      <label for="login">Login:</label>
+      <input type="text" id="login" name="login" required>
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <div id="mensagem"></div>
+
+    <!-- Login com Google -->
+    <div id="google-login" style="margin-top: 20px;"></div>
+
+    <nav style="margin-top: 20px;">
+      <a href="index.html" class="btn-voltar">← Voltar para a lista de produtos</a>
+    </nav>
+  </main>
+
+  <script>
+    
+function decodeJwtResponse(token) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split('')
+      .map((c) => {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join('')
+  );
+  return JSON.parse(jsonPayload);
+}
+
+
+    // Login com Google
+    window.onload = function () {
+      google.accounts.id.initialize({
+        client_id: '103763165407-m2kkefcffpjm8h7k0k8vp01am6lth1ir.apps.googleusercontent.com',
+        callback: (response) => {
+          alert("Login com Google realizado! Token recebido.");
+          console.log(response.credential); // Você pode enviar esse token ao backend para validação
+        }
+      });
+      google.accounts.id.renderButton(
+        document.getElementById("google-login"),
+        { theme: "outline", size: "large" }
+      );
+    }
+  </script>
+</body>
+</html>

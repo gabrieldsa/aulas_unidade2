@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Produto</title>
     <link rel="stylesheet" href="style/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <header>
@@ -29,11 +31,18 @@
                 .then(produto => {
                     document.getElementById('produto-detalhe').innerHTML = `
                         <div class="produto-detalhe-card">
-                            <img src="${produto.imagem}" alt="${produto.nome}" style="max-width: 300px; max-height: 300px;">
-                            <h2>${produto.nome}</h2>
-                            <p><strong>Preço:</strong> R$ ${produto.preco.toFixed(2)}</p>
-                            <p><strong>Descrição:</strong> ${produto.descricao}</p>
+                        <img src="..." alt="...">
+                        <h2>Nome do Jogo</h2>
+                        <p>Categoria</p>
+                        <p>Descrição</p>
+                        <p>Preço</p>
+                        <div class="card-buttons">
+                            <a href="index.html" class="btn-voltar">Voltar</a>
+                            <button class="btn-editar">Editar</button>
+                            <button class="btn-excluir">Excluir</button>
                         </div>
+                        </div>
+
                     `;
                 })
                 .catch(erro => {
